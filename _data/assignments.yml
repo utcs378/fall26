@@ -1,35 +1,29 @@
-- release_date: 01/13/2026
-  due_date: 01/22/2026
+- release_date:
+  due_date:
   number: 0
   title: >
-    Cloudlab and Kathara
+    PyTorch and CUDA Basics
 
-- release_date: 01/22/2026
-  due_date: 02/03/2026
+- release_date:
+  due_date:
   number: 1
   title: >
-    Socket Programming and Measurement
+    Kernels and Compilation
 
-- release_date: 02/03/2026
-  due_date: 02/12/2026
+- release_date:
+  due_date:
   number: 2
   title: >
-    Hierarchical DNS
+    Basic Profiling and Parallelism
 
-- release_date: 02/12/2026
-  due_date: 03/10/2026
+- release_date:
+  due_date:
   number: 3
   title: >
-    Reliable Transport Protocol and Congestion Control
+    Serving Stack
 
-- release_date: 03/10/2026
-  due_date: 04/07/2026
+- release_date:
+  due_date:
   number: 4
   title: >
-    Software Router with P4
-
-- release_date: 04/07/2026
-  due_date: 04/23/2026
-  number: 5
-  title: >
-    Supporting ARP and ICMP in the Router
+    Deep Research Agent and Block Management

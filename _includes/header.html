@@ -4,7 +4,7 @@
 
     <span class="site-title">
       <img class="logo" src="{{ '/assets/img/utlogo_shield.png' | relative_url}}">
-      <a class="page-link" href="{{ site.baseurl | prepend: site.url }}/">{{ site.name }}</a>
+      <a class="page-link" href="{{ '/' | relative_url }}">{{ site.name }}</a>
     </span>
 
     <nav class="site-nav">
@@ -20,12 +20,10 @@
         </label>
 
       <div class="trigger">
-        <a class="page-link" href="{{ site.baseurl | prepend: site.url }}">Home</a>
+        <a class="page-link" href="{{ '/' | relative_url }}">Home</a>
         <a class="page-link" href="{{ '/logistics/' | relative_url }}">Logistics</a>
         <a class="page-link" href="{{ '/schedule/' | relative_url }}">Schedule</a>
         <a class="page-link" href="{{ '/assignments/' | relative_url }}">Assignments</a>
-        <a class="page-link" href="https://edstem.org/us/courses/89721">Ed</a>
-        <a class="page-link" href="https://utexas.instructure.com/courses/1440674">Canvas</a>
         <!-- <a class="page-link" href="{{ '/homework/' | relative_url }}">Homework</a> -->
       </div>
     </nav>

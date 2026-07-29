@@ -1,373 +1,363 @@
-- title: "Overview"
+- title: "Week 1: What is an AI system?"
 
-- date: T 01/13
+- date: " "
   lecturer:
   title: >
-    <strong>Course Overview & Introduction</strong>
-  slides: https://utexas-my.sharepoint.com/:p:/g/personal/kd22637_eid_utexas_edu/IQDqo7UdOHCIR5_4E04sT837AdLjq66POtehsZ70vIOZj18?e=QyLc9c
+    <strong>From models to systems</strong>
+  slides:
   video:
   notes:
   readings:
-    - P&D 1.1, 1.2, and 1.5
-    - K&R 1.1--1.3
+    - AI systems as managed execution pipelines rather than isolated models
+    - Training, post-training, serving, retrieval, and agents in the AI lifecycle
   logistics:
-    - Assignment 0 is out
+    - Assignment 0 planned
 
-- date: Th 01/15
+- date: " "
   lecturer:
   title: >
-    <strong>Layered Network Architecture</strong>
-  slides: https://utexas-my.sharepoint.com/:p:/g/personal/kd22637_eid_utexas_edu/IQDBsOb6cod1S5qOx2D9rfMcAVl4JAXJ1cwWyZLpc61jKv8?e=TRXsVl
+    <strong>System metrics and bottlenecks</strong>
+  slides:
   video:
   notes:
   readings:
-    - P&D 1.3
-    - K&R 1.5
+    - Latency, throughput, utilization, cost, and tail behavior
+    - Compute, memory, storage, and communication bottlenecks
   logistics:
 
-- title: "Application Layer"
+- title: "Week 2: AI workload anatomy"
 
-- date: T 01/20
+- date: " "
   lecturer:
   title: >
-    <strong>Network Programming</strong>
-  recitation:
-  slides: https://utexas-my.sharepoint.com/:p:/g/personal/kd22637_eid_utexas_edu/IQAVh7ARcWKUTKCqqBYZ9YcVAensLH0fJLqgxWljHUIfdGU?e=Oufabc
-  notes:
+    <strong>AI workload families</strong>
+  slides:
   video:
+  notes:
   readings:
-    - P&D 1.4
-    - K&R 2.7
-    - <a href="https://github.com/utcs356/socket-example">Example code</a>
+    - Autoregressive, iterative, retrieval-augmented, and workflow workloads
+    - Training, serving, and workflow views of the same model family
   logistics:
 
-- date: Th 01/22
+- date: " "
   lecturer:
   title: >
-    <strong>Web and HTTP</strong>
-  recitation:
-  slides: https://utexas-my.sharepoint.com/:p:/g/personal/kd22637_eid_utexas_edu/IQAcFpVIyWjsSrafYCYHWqbqAeYk3TEL-Y84PHRHUa05KU8?e=U1mIx5
-  notes:
+    <strong>State in AI workloads</strong>
+  slides:
   video:
+  notes:
   readings:
-    - P&D 9.1
-    - K&R 2.2
-  logistics:
-    - Assignment 0 is due
-    - Assignment 1 is out
-
-
-- date: T 01/27
-  lecturer:
-  quiz: >
-    <strong>Class Cancelled - Campus Closed</strong>
+    - Parameters, optimizer state, gradients, activations, KV cache, retrieval indexes, and workflow state
+    - State growth, placement, movement, eviction, and persistence
   logistics:
 
-- date: Th 01/29
+- title: "Week 3: GPU systems for machine learning"
+
+- date: " "
   lecturer:
   title: >
-    <strong>Content Delivery Network (CDN)</strong>
-  recitation:
-  slides: https://utexas-my.sharepoint.com/:p:/g/personal/kd22637_eid_utexas_edu/IQDs35X3D2KyRYRO_uMYVnooAVIXDz6UAbAkiLPB6subKVo?e=aHOLfx
-  notes:
+    <strong>GPU architecture for AI</strong>
+  slides:
   video:
+  notes:
   readings:
-    - P&D 9.4.3
-    - K&R 2.2.5 and 2.6.3
+    - CPU and GPU roles in AI systems
+    - Threads, warps, multiprocessors, device memory, bandwidth, and host-device transfer
   logistics:
+    - Assignment 1 planned
 
-
-- date: T 02/03
+- date: " "
   lecturer:
   title: >
-    <strong>Domain Name System (DNS)</strong>
-  recitation:
-  slides: https://utexas-my.sharepoint.com/:p:/g/personal/kd22637_eid_utexas_edu/IQCS8Goof3vsTYSA3NWb33VSAcAvwwpJkByeR8C6MQZ215g?e=xZ1T2c
-  notes:
+    <strong>Performance limits on accelerators</strong>
+  slides:
   video:
+  notes:
   readings:
-    - P&D 9.3.1
-    - K&R 2.4
+    - Compute-bound versus memory-bound execution
+    - Kernel launch overhead, utilization, ragged workloads, and memory pressure
   logistics:
-    - Assignment 1 is due
-    - Assignment 2 is out
 
-- title: "Transport Layer"
+- title: "Week 4: Compilation and execution stacks"
 
-- date: Th 02/05
+- date: " "
   lecturer:
   title: >
-    <strong>Transport Layer Overview</strong>
-  recitation:
-  slides: https://utexas-my.sharepoint.com/:p:/g/personal/kd22637_eid_utexas_edu/IQBhcuWR1K7DSrccda90S5hXAaQGaehyOGT97SY75VgADZc?e=p6wz0E
-  notes:
+    <strong>Kernels, fusion, and execution efficiency</strong>
+  slides:
   video:
+  notes:
   readings:
-    - P&D 5.1 and 2.5
-    - K&R 3.1 - 3.4
+    - Operators, kernels, memory movement, fusion, and attention kernels
+    - How execution structure changes performance
   logistics:
 
-- date: T 02/10
+- date: " "
   lecturer:
   title: >
-    <strong>TCP Basics</strong>
-  recitation:
-  slides: https://utexas-my.sharepoint.com/:p:/g/personal/kd22637_eid_utexas_edu/IQDabz1dsvmGT4ShYJsEF1rFAYM2M2cii7vRv2r_GmWSrFk?e=krKiXy
-  notes:
+    <strong>Compilers and runtimes for AI</strong>
+  slides:
   video:
+  notes:
   readings:
-    - P&D 5.2
-    - K&R 3.5
+    - Eager versus captured execution
+    - Graph representation, lowering, runtime scheduling, and compiler optimizations
   logistics:
 
-- date: Th 02/12
+- title: "Week 5: Distributed training basics"
+
+- date: " "
   lecturer:
   title: >
-    <strong>Flow and Congestion Control</strong>
-  recitation:
-  slides: https://utexas-my.sharepoint.com/:p:/g/personal/kd22637_eid_utexas_edu/IQDnL-MHueO8RqdmukgEjlGAAZNc7YK2TwpPOl5lW3mUeAo?e=FfTx7o
-  notes:
+    <strong>Data-parallel training</strong>
+  slides:
   video:
+  notes:
   readings:
-    - P&D 5.2.4, 6.3.1, and 6.3.2
-    - K&R 3.5.5, 3.6, and 3.7.1
+    - Forward, backward, and update steps in distributed settings
+    - Gradient synchronization, AllReduce, throughput scaling, and effective batch size
   logistics:
-    - Assignment 2 is due
-    - Assignment 3 is out
+    - Assignment 2 planned
 
-
-- date: T 02/17
+- date: " "
   lecturer:
   title: >
-    <strong>More on Congestion Control</strong>
-  recitation:
-  slides: https://utexas-my.sharepoint.com/:p:/g/personal/kd22637_eid_utexas_edu/IQD-I2_j2MA2TK1d8foIIsO3AV6LYt_e_dOttHIbYo7J168?e=ym56Mh
-  notes:
+    <strong>Model parallelism</strong>
+  slides:
   video:
+  notes:
   readings:
-    - P&D 6.3.2 and 6.3.3
-    - K&R 3.7
+    - Tensor, pipeline, expert, and context parallelism
+    - Tradeoffs across memory, bandwidth, and scheduling complexity
   logistics:
 
-- date: Th 02/19
+- title: "Week 6: Communication and memory in training"
+
+- date: " "
   lecturer:
   title: >
-    <strong>Understanding TCP Performance</strong>
-  recitation:
-  slides: https://utexas-my.sharepoint.com/:p:/g/personal/kd22637_eid_utexas_edu/IQClvMrDZtxrR5H1un0eNrheAdloudA2q9J9m10LJ8LxLGE?e=odjK8M
-  notes:
+    <strong>Communication structure in training</strong>
+  slides:
   video:
+  notes:
   readings:
-    - K&R 3.7
+    - Collective communication patterns and topology effects
+    - Communication cost, overlap, and async training ideas
   logistics:
 
-- title: "Network Layer"
-
-- date: T 02/24
+- date: " "
   lecturer:
   title: >
-    <strong>Internet Protocol (IP)</strong>
-  recitation:
-  slides: https://utexas-my.sharepoint.com/:p:/g/personal/kd22637_eid_utexas_edu/IQDsun5jA3z6Tb5qRkudGdkgAbfTsmTxdSmQysEVMc5Y8zU?e=8eRh3G
-  notes:
+    <strong>Memory efficiency in training</strong>
+  slides:
   video:
+  notes:
   readings:
-    - P&D 3.3
-    - K&R 4.3
+    - Activations, optimizer state, gradients, mixed precision, checkpointing, sharding, and LoRA
+    - Tradeoffs between memory savings and extra work
   logistics:
 
-- date: Th 02/26
-  quiz: >
-    <strong>Midterm Exam</strong>
-  logistics:
+- title: "Week 7: Serving systems I"
 
-- date: T 03/03
+- date: " "
   lecturer:
   title: >
-    <strong>IP Routers</strong>
-  recitation:
-  slides: https://utexas-my.sharepoint.com/:p:/g/personal/kd22637_eid_utexas_edu/IQBpsmPtt2C5TL1K2HOF6weVAcFGR3XqNDnkYYgRejSUAOc?e=UEJDXh
-  notes:
+    <strong>Anatomy of an AI serving stack</strong>
+  slides:
   video:
+  notes:
   readings:
-    - P&D 3.5
-    - K&R 4.1 and 4.2
+    - Request arrival, admission, preprocessing, tokenization, scheduling, execution, and streaming
+    - Interactive serving metrics such as time to first token and inter-token latency
   logistics:
+    - Assignment 3 planned
 
-- date: Th 03/05
+- date: " "
   lecturer:
   title: >
-    <strong>Intra-Domain Routing</strong>
-  recitation:
-  slides: https://utexas-my.sharepoint.com/:p:/g/personal/kd22637_eid_utexas_edu/IQBxH9acGevqS64v-0RCigXJAbfPcaY_UG65Xku4r0H3SmQ?e=TCWwbx
-  notes:
+    <strong>Batching and scheduling in serving</strong>
+  slides:
   video:
+  notes:
   readings:
-    - P&D 3.3 - 3.4
-    - K&R 5.2
+    - Static batching, continuous batching, queues, request length variation, and head-of-line blocking
+    - Scheduling policies and workload dependence
   logistics:
 
-- date: T 03/10
+- title: "Week 8: Serving systems II"
+
+- date: " "
   lecturer:
   title: >
-    <strong>Intra-Domain Routing (Cont'd)</strong>
-  recitation:
-  slides: https://utexas-my.sharepoint.com/:p:/g/personal/kd22637_eid_utexas_edu/IQBOIQkWnyagQZK0sSY-bsB6AU6G2fsxuY1pDxwpX13B7zQ?e=vzQVFF
-  notes:
+    <strong>Memory management in generative serving</strong>
+  slides:
   video:
+  notes:
   readings:
-    - P&D 3.4
-    - K&R 5.2
+    - KV-cache growth, placement, fragmentation, reuse, offloading, blending, and compression
+    - Memory pressure from concurrent sessions
   logistics:
-    - Assignment 3 is due
 
-- date: Th 03/12
+- date: " "
   lecturer:
   title: >
-    <strong>Software-Defined Networking and Programmable Routers</strong>
-  recitation:
-  slides: https://utexas-my.sharepoint.com/:p:/g/personal/kd22637_eid_utexas_edu/IQC5MsYVx2yWT4729gq7HiEHAcVYYgP8HUWvzofww4K06WA?e=rFAcJx
-  notes:
+    <strong>Serving robustness and advanced optimizations</strong>
+  slides:
   video:
+  notes:
   readings:
-    - <a href="https://p4.org/wp-content/uploads/sites/53/2024/10/P4-16-spec-v1.2.5.pdf">P4 language spec</a>
-    - P&D 3.5
-    - K&R 4.4
-  logistics:
-    - Assignment 4 is out
-
-- date: T 03/17
-  lecturer:
-  quiz: >
-    <strong>Spring Break - No Classes</strong>
+    - Chunked prefill, speculative generation, quantization, disaggregated serving, and degraded service behavior
   logistics:
 
-- date: Th 03/19
-  lecturer:
-  quiz: >
-    <strong>Spring Break - No Classes</strong>
-  logistics:
+- title: "Week 9: Post-training systems"
 
-- date: T 03/24
+- date: " "
   lecturer:
   title: >
-    <strong>Inter-Domain Routing and Border Gateway Protocol (BGP)</strong>
-  recitation:
-  slides: https://utexas-my.sharepoint.com/:p:/g/personal/kd22637_eid_utexas_edu/IQA37Xd0QufRTLEjrkT-8lQhAcxboUKGyuJcucxh85DiVEo?e=usrsCM
-  notes:
+    <strong>Post-training as a systems workload</strong>
+  slides:
   video:
+  notes:
   readings:
-    - P&D 4.1
-    - K&R 5.4
+    - Supervised fine-tuning, preference-based post-training, and RL-style post-training
+    - Rollout generation, parameter updates, feedback data, and trajectories as structured state
   logistics:
 
-- date: Th 03/26
+- date: " "
   lecturer:
   title: >
-    <strong>BGP (Cont'd)</strong>
-  recitation:
-  slides: https://utexas-my.sharepoint.com/:p:/g/personal/kd22637_eid_utexas_edu/IQBNFL_bhN2ETaNElQ7lfQ6oAQHjWPzRxYS_-5jVPSOtrtU?e=AuvVbs
-  notes:
+    <strong>Infrastructure for RL-style post-training</strong>
+  slides:
   video:
+  notes:
   readings:
-    - P&D 4.1
-    - K&R 5.4
+    - Rollout workers, training workers, policy synchronization, data pipelines, and evaluation loops
+    - Checkpoint selection, validation, and update cadence
   logistics:
 
-- title: "Data Link Layer"
+- title: "Week 10: Retrieval and data systems for AI"
 
-- date: T 03/31
+- date: " "
   lecturer:
   title: >
-    <strong>Data Link Layer</strong>
-  recitation:
-  slides: https://utexas-my.sharepoint.com/:p:/g/personal/kd22637_eid_utexas_edu/IQC25iKdRmdKSbennr7pCgNqAVs5SEfQomxdrlp89iXzhG0?e=hVH6yp
-  notes:
+    <strong>Retrieval pipelines for AI applications</strong>
+  slides:
   video:
+  notes:
   readings:
-    - P&D 2.1 - 2.3 and 2.6
-    - K&R 6.1 and 6.3
+    - Embedding generation, document representation, chunking, indexing, and query flow
+    - Retrieved context as a systems input
   logistics:
 
-- date: Th 04/02
+- date: " "
   lecturer:
   title: >
-    <strong>Switched Ethernet</strong>
-  recitation:
-  slides: https://utexas-my.sharepoint.com/:p:/g/personal/kd22637_eid_utexas_edu/IQCVYWmoqwEdSKH4tPAIhI0OASfXXGS4dxoEMVXmy0ROPsQ?e=FE2Ite
-  notes:
+    <strong>Vector search and data-system tradeoffs</strong>
+  slides:
   video:
+  notes:
   readings:
-    - P&D 2.4 - 2.5 and 3.1 - 3.2
-    - K&R 6.2.3 and 6.4
+    - Exact and approximate nearest-neighbor search
+    - Recall, latency, metadata filtering, freshness, updates, cache design, quality, and cost
   logistics:
 
-- date: T 04/07
+- title: "Week 11: Agent and workflow systems"
+
+- date: " "
   lecturer:
   title: >
-    <strong>Wireless Networks</strong>
-  recitation:
-  slides: https://utexas-my.sharepoint.com/:p:/g/personal/kd22637_eid_utexas_edu/IQDs2wBYH4S3T7tpW3jrrjlqAYsGyPIheIFpZs4amh8egIU?e=lvaAdD
-  notes:
+    <strong>AI agents as workflow systems</strong>
+  slides:
   video:
+  notes:
   readings:
-    - P&D 2.7
-    - K&R 7.3
+    - Model calls, tool invocation, remote execution, session state, workflow state, and orchestration graphs
+    - Latency accumulation across multi-step workflows
   logistics:
-    - Assignment 4 is due
-    - Assignment 5 is out
+    - Assignment 4 planned
 
-- title: "Security"
-
-- date: Th 04/09
+- date: " "
   lecturer:
   title: >
-    <strong>Network Security (1)</strong>
-  recitation:
-  slides: https://utexas-my.sharepoint.com/:p:/g/personal/kd22637_eid_utexas_edu/IQD2gXR4zbxUQ4TF8SW-1bXQAe56Xc6a7cPgabAFwG61xWE?e=8t5Gi5
-  notes:
+    <strong>Reliability in tool-using systems</strong>
+  slides:
   video:
+  notes:
   readings:
-    - P&D 8.1--8.2
-    - K&R 8.1--8.2
+    - Retries, timeouts, fallback behavior, partial failure, idempotence, tracing, and observability
   logistics:
 
+- title: "Week 12: Protocols and control planes for AI runtimes"
 
-- date: T 04/14
+- date: " "
   lecturer:
   title: >
-    <strong>Network Security (2)</strong>
-  recitation:
-  slides: https://utexas-my.sharepoint.com/:p:/g/personal/kd22637_eid_utexas_edu/IQAyxCJyyslDTYWn4FK0nHuMAfMQpKh9vFR4LIcYqoX6yBU?e=HR4FRP
-  notes:
+    <strong>Protocols for tool and resource access</strong>
+  slides:
   video:
+  notes:
   readings:
-    - P&D 8.3--8.5 (8.5.3 and 8.5.6)
-    - K&R 8.3--8.4 and 8.9
+    - Protocolized access to tools, data, and external resources
+    - Clients, servers, resources, tools, stateless/stateful interaction, and interface design
   logistics:
 
-- title: "Wrap-Up and Review"
-
-- date: Th 04/16
+- date: " "
   lecturer:
   title: >
-    <strong>Putting the Pieces Together</strong>
-  recitation:
-  slides: https://utexas-my.sharepoint.com/:p:/g/personal/kd22637_eid_utexas_edu/IQDLpQbrn8a5SoEXWhN5xbZiAeYHEjOZ4x72QbN6iA065ms?e=2CMxXk
-  notes:
+    <strong>Control planes for stateful AI runtimes</strong>
+  slides:
   video:
+  notes:
   readings:
+    - Session lifecycle, context management, authorization, work management, routing, backpressure, and retry coordination
   logistics:
 
-- date: T 04/21
+- title: "Week 13: Operating AI systems"
+
+- date: " "
   lecturer:
-  quiz: >
-    <strong>Study Day - No Class</strong>
+  title: >
+    <strong>Multi-tenancy and resource management</strong>
+  slides:
+  video:
+  notes:
+  readings:
+    - Multi-tenant serving environments, interference, isolation, admission control, priority, and SLOs
+    - Resource allocation under contention
   logistics:
 
-- date: Th 04/23
+- date: " "
   lecturer:
-  quiz: >
-    <strong>Final Exam</strong>
+  title: >
+    <strong>Monitoring, debugging, and fault handling</strong>
+  slides:
+  video:
+  notes:
+  readings:
+    - Logging, tracing, metrics, regression detection, failure diagnosis, recovery, rollback, and system health
   logistics:
-    - Assignment 5 is due
+
+- title: "Week 14: Evaluation, adaptive systems, and future directions"
+
+- date: " "
+  lecturer:
+  title: >
+    <strong>Evaluation, online maintenance, and adaptive systems</strong>
+  slides:
+  video:
+  notes:
+  readings:
+    - Benchmark design, workload selection, warmup effects, saturation, regression detection, and online maintenance
+    - Safe specialization and evaluation harness pitfalls
+  logistics:
+
+- date: " "
+  lecturer:
+  title: >
+    <strong>Future directions in AI systems</strong>
+  slides:
+  video:
+  notes:
+  readings:
+    - Heterogeneous accelerators, dynamic workloads, hardware/software co-design, persistent stateful applications, and energy-aware systems
+  logistics:

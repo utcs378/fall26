@@ -1,17 +1,17 @@
 # -----------------------------------------------------------------------------
 # Site settings
 # -----------------------------------------------------------------------------
-author: 
-name: "CS 356: Computer Networks"
-title: Computer Networks
+author:
+name: "CS 378: Systems for Machine Learning"
+title: Systems for Machine Learning
 email: 
 description: >
-  CS 356 - Computer Networks - The University of Texas at Austin - Spring 2026
+  CS 378 - Systems for Machine Learning - The University of Texas at Austin - Fall 2026
 footer_text: >
   Powered by <a href="http://jekyllrb.com/" target="_blank">Jekyll</a> with <a href="https://github.com/alshedivat/al-folio">al-folio</a> theme.
 
-url: https://utcs356.github.io  # the base hostname & protocol for your site
-baseurl: "/sp26" # the subpath of your site, e.g. /blog/
+url: https://utnslab.github.io  # the base hostname & protocol for your site
+baseurl: "/utcs378" # the subpath of your site, e.g. /blog/
 
 # -----------------------------------------------------------------------------
 # Social integration

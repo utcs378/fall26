@@ -9,5 +9,4 @@ _site/
 .LSOverride
 
 .idea/
-.ruby-version
 Gemfile.lock

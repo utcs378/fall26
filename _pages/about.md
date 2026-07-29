@@ -1,63 +1,66 @@
 ---
 layout: about
 permalink: /
-title: Welcome to CS 356, Spring 2026 Edition!
-description: CS 356 Computer Networks - University of Texas at Austin
-logo: 
+title: Welcome to CS 378, Fall 2026 Edition!
+description: CS 378 Systems for Machine Learning - University of Texas at Austin
+logo:
 news: true
 ---
 
 ### Course Overview
 
-Welcome to CS 356, Computer Networks!
-This course offers an engaging introduction to computer networking for undergraduate and beginning graduate students.
-We will explore the core principles and practical aspects of computer networking, from the protocols powering the Internet to building your own networked applications.
+Welcome to CS 378, Systems for Machine Learning!
+This course studies modern machine learning through a systems lens.
+Rather than treating models as isolated artifacts, we will look at the end-to-end systems that train, serve, monitor, and adapt them: accelerators, execution stacks, distributed training infrastructure, serving runtimes, retrieval pipelines, and agentic workflows.
+The course emphasizes how systems choices affect latency, throughput, cost, reliability, resource efficiency, and the quality of user-facing AI applications.
 
 In this course, you will:
-* Learn how computer networks function and enable global communication
-* Understand the design choices behind modern networks and anticipate future trends
-* Build your own networked applications and software routers through hands-on programming assignments
+* Learn how modern AI workloads stress compute, memory, storage, communication, and runtime systems
+* Understand the design choices behind training, serving, retrieval, and workflow systems
+* Reason about system metrics such as latency, throughput, utilization, cost, tail behavior, and reliability
+* Build practical intuition through hands-on programming assignments
 
-Classes combine interactive lectures, discussions, and programming projects.
-Whether you are passionate about systems, curious about how the Internet works, or aiming to develop scalable networked software, this course will equip you with essential skills and insights.
+Classes combine lectures, systems-oriented discussion, and programming projects.
+Whether you are interested in machine learning infrastructure, large-scale systems, or building efficient AI applications, this course will give you tools for understanding how model behavior and systems behavior interact.
 
 ### Textbooks
 
-There is no required textbook.
-The following resources are highly recommended for further reading:
-* [Computer Networks: A Systems Approach](https://book.systemsapproach.org/){:target="\_blank"} (available online) by Larry Peterson and Bruce Davie (P&D)
-* [Computer Networking: A Top-Down Approach](https://gaia.cs.umass.edu/kurose_ross/index.php){:target="\_blank"} by Jim Kurose and Keith Ross (K&R)
-
-Relevant chapters will be indicated in the course schedule.
+TODO
 
 ### Topics Covered
 
 Throughout the semester, we will cover the following key topics:
 
-* Network layers and programming
-* Application layer protocols (HTTP, DNS, content delivery networks)
-* Transport layer protocols (TCP, flow control, and congestion control)
-* Network layer and Internet Protocol (IP)
-* Routing protocols (intra-domain, inter-domain, and BGP)
-* Data link layer and switched LANs
-* Software-defined networking and programmable switches (P4)
-* Data center networks
-* Wireless networks
-* Network security
+* Models versus systems, the AI lifecycle, and system quality
+* AI workload anatomy, including autoregressive generation, retrieval-augmented generation, and agentic workflows
+* GPU and accelerator architecture for machine learning workloads
+* Kernels, fusion, compilation, runtimes, and execution efficiency
+* Distributed training, data parallelism, model parallelism, communication, and memory efficiency
+* Serving systems, batching, scheduling, KV-cache management, and robustness
+* Post-training systems and RL-style infrastructure
+* Retrieval pipelines, vector search, and data-system tradeoffs
+* Agent and workflow systems, including tool use, state, reliability, and observability
+* Runtime protocols, control planes, operating AI systems, evaluation, adaptive systems, and future directions
 
 ### Prerequisites
 
-- CS 439 (Principles of Computer Systems) or equivalent
-- Proficiency in C and Python programming
+TODO
 
 ***
 
 ### Course Information
 
-- **Unique Number:** 53310
-- **Time:** Tuesday & Thursday, 9:30 AM - 10:45 AM
-- **Location:** ART 1.110
-- **Discussion:** [Ed](https://edstem.org/us/courses/89721){:target="\_blank"}
-- **Lecture Recordings:** [Canvas](https://utexas.instructure.com/courses/1440674/external_tools/161383?display=borderless){:target="\_blank"}
+- **Course Number:** CS 378
+- **Semester:** Fall 2026
+- **Unique Number:** TODO
+- **Time:** TODO
+- **Location:** TODO
+- **Discussion:** TODO
+- **Lecture Recordings:** TODO
+- **Course Materials:** TODO
 
 ***
+
+### Course Staff
+
+Office hours and locations are TODO.

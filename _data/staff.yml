@@ -1,29 +1,26 @@
 Instructors:
-    - name: Daehyeok Kim
-      email: daehyeok@utexas.edu
-      url: https://daehyeok.kim/
-      office-hours: Wednesday 4pm - 5pm
-      image: staff/daehyeok.png
-      location:  GDC 6.824
+    - name: Aditya Akella
+      email: akella@cs.utexas.edu
+      url: https://www.cs.utexas.edu/~akella/
+      office-hours: TODO
+      image:
+      location: TODO
+
+EducationAssociates:
 
 TAs:
-    - name: Donghyun Kim
-      email: donghyun@utexas.edu
-      url: https://donghyun-kim.com/
-      office-hours: Tuesday 4pm - 5pm
-      location: GDC 6.728I
-      image: staff/donghyun.jpg
+    - name: Gaurav Vipat
+      email: gvipat@utexas.edu
+      url:
+      office-hours: TODO
+      location: TODO
+      image:
 
-    - name: Geon-Woo Kim
-      email: gwkim@utexas.edu
-      url: https://gwsshs22.github.io/
-      office-hours: Thursday 4pm - 5pm
-      location: GDC 6.818B
-      image: staff/geonwoo.jpg
-    
-    - name: Xiao Zhang
-      email: zx123@utexas.edu
-      url: https://timez-zx.github.io/
-      office-hours: Monday 4pm - 5pm
-      location:  GDC 6.818A
-      image: staff/xiao.jpg
+    - name: Rishika Varma Kalidindi
+      email: rishikavarma@utexas.edu
+      url:
+      office-hours: TODO
+      location: TODO
+      image:
+
+CAs:
