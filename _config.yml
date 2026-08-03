@@ -2,11 +2,11 @@
 # Site settings
 # -----------------------------------------------------------------------------
 author:
-name: "CS 378: Systems for Machine Learning"
-title: Systems for Machine Learning
+name: "CS 378: Systems for Generative AI"
+title: Systems for Generative AI
 email: 
 description: >
-  CS 378 - Systems for Machine Learning - The University of Texas at Austin - Fall 2026
+  CS 378 - Systems for Generative AI - The University of Texas at Austin - Fall 2026
 footer_text: >
   Powered by <a href="http://jekyllrb.com/" target="_blank">Jekyll</a> with <a href="https://github.com/alshedivat/al-folio">al-folio</a> theme.
 

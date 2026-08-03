@@ -1,1 +1,1 @@
-# UT CS 378: Systems for Machine Learning - Fall 2026
+# UT CS 378: Systems for Generative AI - Fall 2026
