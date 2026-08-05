@@ -16,13 +16,15 @@ title: "Assignment 1: Kernels and Compilation"
 In this assignment you will build the attention kernel at the heart of every
 modern LLM. First you will run the naive attention implementation
 that materializes the full attention matrix, then you will implement Flash Attention: a tiled CUDA kernel that computes exactly the same result without ever materializing the `N x N` score matrix, using the online softmax trick.
-You will compile your kernel with `nvcc`, bind it into the **miniTorch** deep-learning framework, and use it to train a real Transformer language model on German-to-English machine translation.
+You will compile your kernel with `nvcc`, integrate it into **PyTorch** as a CUDA extension with a custom `autograd.Function`, and use it to train a real Transformer language model on German-to-English machine translation. Finally, you will implement the same algorithm a second time in **Triton**, where the matmuls run on tensor cores — and measure it beating naive attention by an order of magnitude.
 
 After this assignment you should be able to:
 * Explain why attention is memory-bound and how tiling against the GPU memory hierarchy (HBM vs. on-chip shared memory) addresses it.
 * Derive and implement the online (streaming) softmax update, including numerically stable max-subtraction.
 * Implement causal masking inside a tiled kernel, where thread-local tile coordinates must be translated to global sequence positions.
-* Compile a CUDA kernel into a shared library and call it from Python through a host-pointer `ctypes` interface.
+* Compile a CUDA kernel and integrate it into PyTorch as a CUDA extension backing a custom `autograd.Function` — the standard way custom ops ship in real systems.
+* Measure a kernel honestly (CUDA events, peak-memory accounting) and reason about when tiling buys memory, when it buys speed, and why the two are different questions.
+* Write a block-level kernel in Triton and explain what tensor cores change about kernel design.
 
 This assignment is completed **individually** on **Google Colab**. A free T4 GPU is sufficient. (You may use any CUDA GPU you have access to instead; everything is plain `nvcc` + Python.)
 
@@ -30,14 +32,15 @@ This assignment is completed **individually** on **Google Colab**. A free T4 GPU
 
 1. **Get the skeleton code.** Create a **private** repository from the template at <TODO: GITHUB REPO TEMPLATE>
    (`Use this template > Create a new repository`, select `Private`).
-2. **Open the Colab notebook.** Open `flash_attention_colab.ipynb` from your repository in [Google Colab](https://colab.research.google.com), and set the runtime to a GPU: `Runtime > Change runtime type > T4 GPU`.
+2. **Open the Colab notebook.** Go to [colab.research.google.com](https://colab.research.google.com) → `File > Open notebook` → `GitHub` tab → check *Include private repos* and authorize Colab's GitHub app → select your repository → `flash_attention_colab.ipynb`. Set the runtime to a GPU: `Runtime > Change runtime type > T4 GPU`. (Opening a notebook from GitHub loads only the notebook itself into a fresh VM — the notebook's clone cell fetches the rest of your repository, which is where your edits will live.)
 3. **Run the setup cells.** The first cells of the notebook clone your
-   repository (edit `REPO_URL` to point at your private repo), install the one missing dependency (`pycuda`), and compile all CUDA kernels:
+   repository (edit `REPO_URL` to point at your private repo), install the few missing dependencies, and compile your kernel for the standalone graded tests:
    ```
    bash compile_cuda.sh
    ```
-   Compilation must succeed before any test can run. It compiles each
-   `src/*.cu` file into a shared library under `minitorch/cuda_kernels/`.
+   This produces shared libraries under `build/` that the `ctypes`-based
+   graded tests load. The PyTorch extension used in the later cells
+   compiles separately — and automatically — on first use.
 
 **Note**: Colab VMs are ephemeral. **Commit and push your changes to your private repository at the end of every session**, or you will lose them.
 The notebook edits files in the cloned repo on the VM; use the provided `git` cells (or the Colab terminal) to push.
@@ -46,17 +49,17 @@ The notebook edits files in the cloned repo on the VM; use the provided `git` ce
 
 #### Codebase tour
 
-You will only modify **one file**, but you should understand how it connects
-to the rest of the stack:
+You will only modify **two files**, but you should understand how they
+connect to the rest of the stack:
 
-| Path | What it is | Modify? |
-|---|---|---|
-| `src/flash_attention_kernel.cu` | The Flash Attention forward kernel and its `extern "C"` launcher. Contains the three `TODO` blocks you implement. | **Yes** |
-| `minitorch/cuda_kernel_ops.py` | `flash_attn_fw`: the `ctypes` binding that calls your compiled kernel from Python. | No |
-| `minitorch/tensor_functions.py` | `FlashAttn(Function)`: hooks your kernel into miniTorch autograd. The backward pass is provided (it recomputes standard attention gradients), so the model can *train* even though you only write the forward kernel. | No |
-| `minitorch/modules_transfomer.py` | `MultiHeadAttention(use_flash_attn=True)`: the Transformer uses your kernel when this flag is set. | No |
-| `kernel_tests/` | Correctness tests (see [How to test](#how-to-test)). | No |
-| `project/run_machine_translation.py` | Trains a 4-layer decoder-only Transformer on IWSLT-14 De-En. | No |
+| Path | What it is |
+|---|---|
+| `src/flash_attention_kernel.cu` | The Flash Attention forward kernel and its `extern "C"` launcher. Contains the three `TODO` blocks you implement. |
+| `src/flash_attention_torch.cu` | PyTorch extension wrapper: `#include`s your kernel file and launches your `__global__` kernel directly on GPU-resident torch tensors — no host copies. |
+| `flash_attention.py` | JIT-compiles the extension (`torch.utils.cpp_extension`) and wraps it in a `torch.autograd.Function`. The backward pass is provided (it recomputes standard attention gradients with torch ops), so the model can train even though you only write the forward kernel. Also provides the `naive_attention` baseline. |
+| `triton_flash_attention.py` | Part 4: the same algorithm in Triton, on tensor cores. Contains the one `TODO` block you implement (the online-softmax merge). | 
+| `kernel_tests/` | Graded tests (see [How to test](#how-to-test)). |
+| `project/run_machine_translation.py` | Trains a 4-layer decoder-only Transformer on IWSLT-14 De-En; `--use_flash_attn True` swaps the attention core from naive to your kernel. |
 
 ### Part 1: Background
 
@@ -185,42 +188,88 @@ The exact update formulas are restated in the comment above the block.
 * If results are correct for `N = 32` but wrong for larger `N`, your merge
   is not order-independent — recheck the correction factors.
 
-### Part 3: Use your kernel in a real Transformer
+### Part 3: Measure your kernel and use it in a real Transformer
 
-Nothing to implement here — this part demonstrates that your kernel is a
-drop-in replacement inside a full model, and it is part of your report.
+Nothing to implement here — this part measures what your kernel does and
+does not buy, and demonstrates it as a drop-in replacement inside a full
+model. All of it goes in your report.
 
-1. **Module equivalence** (notebook cell 6): runs miniTorch
-   `MultiHeadAttention` twice with identical weights — naive path vs.
-   `use_flash_attn=True` — and prints the max forward/gradient difference.
-   Both should be `< 1e-5`.
-2. **Machine translation training** (notebook cells 7-8): trains the
-   4-layer decoder LM on IWSLT-14 De-En for one epoch, first with naive
-   attention, then with your flash kernel:
+1. **Speed benchmark** (notebook cell 7): times your kernel against the
+   naive baseline with CUDA events, GPU-resident, at several sequence
+   lengths. **Your kernel will be slower — that is the expected result.**
+   The naive baseline's two matmuls run on cuBLAS (tensor cores, carefully
+   tiled by NVIDIA engineers), while your kernel's inner products are
+   deliberately simple scalar loops so that the algorithm stays readable.
+   Production Flash Attention wins on *both* memory and speed because it
+   fuses the online-softmax algorithm you wrote with matmuls of cuBLAS
+   quality. You will explain this in Q3.
+2. **Memory measurement** (notebook cell 8): measures peak extra GPU
+   memory for one attention call at `N = 2048`: roughly **3 GiB (naive)
+   vs. 50 MiB (yours)** — a ~62x reduction that grows linearly with `N`.
+   This is the half of the Flash Attention promise your kernel fully
+   delivers: the `(N, N)` matrix never exists. Push `N` higher and the
+   naive baseline exhausts a T4's 16 GB while your kernel keeps going.
+3. **Machine translation training** (notebook cells 12-13): trains the
+   4-layer decoder LM on IWSLT-14 De-En, first with naive attention, then
+   with your flash kernel:
    ```
    python project/run_machine_translation.py --model_max_length 65 \
-       --samples_per_epoch 1280 --batch_size 64 [--use_flash_attn True]
+       --samples_per_epoch 20000 --batch_size 64 [--use_flash_attn True]
    ```
    (`model_max_length 65` makes the model sequence length 64, a multiple
    of 32 as your kernel requires.) Capture the final progress-bar line of
-   both runs (loss and `tokens_per_sec`) for your report. The two loss
-   curves should track each other closely — your kernel computes *exact*
-   attention, so this is a strong end-to-end correctness check.
+   both runs. The loss values should match almost exactly — your kernel
+   computes *exact* attention, and gradients flow through the provided
+   backward — making this a strong end-to-end correctness check. Expect
+   `tokens_per_sec` to be modestly lower with your kernel (attention is a
+   small fraction of this short-sequence model; Amdahl's law caps the
+   impact of any single op either way).
 
-**A note on speed.** Do not expect a wall-clock speedup in this harness:
-the teaching framework round-trips every tensor through host memory, which
-dominates runtime, and this kernel's inner matmuls are deliberately simple.
-What you should expect — and what you will quantify in the report — is the
-*memory* difference: naive attention materializes `batch * heads * N * N`
-scores; your kernel's HBM footprint for the same quantities is
-`O(batch * heads * N)` (just `l` and `m`).
+### Part 4: Make it fast — the same algorithm in Triton
+
+Part 3 left you with a puzzle: your kernel does *less* memory traffic than
+the naive baseline yet runs slower, because its inner products are scalar
+loops on CUDA cores while cuBLAS uses **tensor cores** — dedicated matrix
+units that are an order of magnitude faster at matmuls. Hand-writing
+tensor-core code (`wmma`/CUTLASS, what production Flash Attention uses) is
+beyond a first kernel course. But there is an industry-standard middle
+ground: [Triton](https://triton-lang.org), a Python-embedded DSL where you
+write **block-level** programs — "load this `(64, 64)` tile, `tl.dot`
+these tiles" — and the compiler emits tensor-core instructions, memory
+pipelining, and register allocation for you. (This is not a toy:
+`torch.compile` generates Triton, and much industrial kernel work is
+prototyped in it.)
+
+`triton_flash_attention.py` contains the full kernel scaffold: block
+pointers, the Q-block load, the K/V loop, tile scores via `tl.dot`, and
+causal masking are all provided. Notice how it differs from your CUDA
+kernel: one *program instance* per `(Q-block, batch, head)` — thousands of
+independent instances instead of one warp per `(batch, head)` — and every
+operation acts on whole `(64, 64)` tiles.
+
+#### 4.1 `ASSIGN5_1_4`: the online softmax merge, on tiles
+
+Implement the one `TODO` block: the same merge you wrote in `ASSIGN5_1_3`,
+now expressed with Triton tile primitives (`tl.maximum`, `tl.max`,
+`tl.exp`, `tl.sum`, `tl.dot`). The comment above the block gives the
+required quantities in order; it is ~6 lines. Two things to notice while
+you write it:
+* The running statistics `m_i`, `l_i`, `acc` are `float32` while the tile
+  data is `float16` — mixed precision, exactly as in production Flash
+  Attention (cast `p` with `.to(v.dtype)` before the `tl.dot`).
+* There is no explicit `O` read-modify-write against HBM as in your CUDA
+  kernel: `acc` lives in registers for the whole loop and is written once.
+
+Then run the benchmark (notebook cell 10). At `N = 4096` you should see
+your Triton kernel beat naive attention by **an order of magnitude** —
+same algorithm you wrote in CUDA, now with matmuls the hardware likes.
 
 ### How to test
 
-All commands run from the repo root with `PYTHONPATH=.` (the notebook cells
-do this for you). **Recompile after every kernel edit** (`bash
-compile_cuda.sh` or the notebook's compile cell) — Python loads the `.so`,
-not your source.
+All commands run from the repo root (the notebook cells do this for you).
+**After every kernel edit, recompile**: run `bash compile_cuda.sh` for the
+`ctypes` tests; the PyTorch extension detects source changes and recompiles
+itself on the next call.
 
 * **Graded kernel test (non-causal):**
   ```
@@ -230,11 +279,21 @@ not your source.
   `N = 512`, tolerance `1e-3` (typical achieved error is `~1e-6`). Prints
   `PASS`/`FAIL` per shape and exits nonzero on any failure.
 * **Graded kernel test (causal):** the same with `--causal 1`.
-* **miniTorch integration test:**
+* **PyTorch integration test:**
   ```
-  python kernel_tests/test_flash_attn_fw.py
+  python kernel_tests/test_flash_attn_torch.py
   ```
-  Exercises the full `Tensor.flash_attn` path through the framework.
+  Runs your kernel through the extension and the `autograd.Function`,
+  checking the forward against `torch.nn.functional.scaled_dot_product_attention`
+  and gradients against torch autograd, causal and non-causal. The first
+  run JIT-compiles the extension (~1-2 minutes); later runs hit a cache.
+* **Graded Triton test (Part 4):**
+  ```
+  python kernel_tests/grade_triton_flash.py
+  ```
+  Checks your Triton kernel against
+  `torch.nn.functional.scaled_dot_product_attention` in float16, causal
+  and non-causal. Triton also JIT-compiles on first call (seconds).
 * **Debugging tips:**
   * Test `ASSIGN5_1_1`/`5_1_2` before writing `5_1_3`: with only the first
     two blocks done, the `N = 32` case (a single tile) exercises them in
@@ -248,63 +307,86 @@ not your source.
 
 ### Submission
 
-Run the final notebook cell (**Package submission**), which creates
+Run the **Package submission** notebook cell, which creates
 `submission.zip` containing exactly:
 * `src/flash_attention_kernel.cu`
+* `triton_flash_attention.py`
 
 Submit to the Canvas Assignments page:
 1. `submission.zip`, and
 2. a **PDF report** (any tool, but submit PDF) containing:
    * your name and EID;
    * the output of both graded kernel tests and the integration test;
-   * the Part 3 screenshots: module-equivalence output, and the final
-     training line for the naive and flash MT runs;
-   * **Q1**: For `batch=64, heads=8, N=64` (the MT configuration), how many
-     floats does naive attention materialize for `S`, and what is your
-     kernel's corresponding HBM-resident footprint (`l` and `m`)? Show the
-     arithmetic.
+   * the Part 3 and Part 4 evidence: the CUDA benchmark table (cell 7),
+     the peak-memory numbers (cell 8), the Triton benchmark table
+     (cell 10), and the final training line for the naive and flash MT
+     runs (cells 12-13);
+   * **Q1**: For `batch=8, heads=12, N=2048` (the cell 8 configuration),
+     derive the ~3 GiB and ~50 MiB peak-memory numbers you measured. What
+     does each consist of? Show the arithmetic.
    * **Q2**: Your kernel processes K/V tiles sequentially, merging each
      into the running `(m, l, O)`. Explain in 3-5 sentences why the merged
      result is independent of the order in which tiles are processed, and
      name one system opportunity this order-independence enables.
+   * **Q3**: You implemented the same algorithm twice. Your CUDA kernel is
+     slower than naive attention (cell 7) while your Triton kernel is an
+     order of magnitude faster (cell 10) — a gap of roughly three orders
+     of magnitude between your own two implementations. Using your
+     measurements, explain where the gap comes from. Be specific about
+     (a) the hardware units each implementation's matmuls run on, (b) the
+     parallelization difference (how many independent blocks/programs each
+     launches), and (c) why the naive baseline, despite cuBLAS, still
+     loses to your Triton kernel at large `N`.
 
 ### Grading
 
-* Flash Attention kernel implementation: **70%**
-  * Forward correctness, non-causal (`grade_flash_kernel.py --causal 0`): 40%
-  * Causal masking (`grade_flash_kernel.py --causal 1`): 20%
-  * miniTorch integration (`test_flash_attn_fw.py`): 10%
+* CUDA kernel (Part 2): **55%**
+  * Forward correctness, non-causal (`grade_flash_kernel.py --causal 0`): 30%
+  * Causal masking (`grade_flash_kernel.py --causal 1`): 15%
+  * PyTorch integration (`test_flash_attn_torch.py`): 10%
+* Triton kernel (Part 4, `grade_triton_flash.py`): **15%**
 * Report: **30%**
-  * Test outputs and Part 3 evidence (equivalence + both training runs): 15%
-  * Q1: 7.5%
-  * Q2: 7.5%
+  * Test outputs and Part 3/4 evidence (benchmarks, memory, both training runs): 12%
+  * Q1: 6%
+  * Q2: 6%
+  * Q3: 6%
 
 Kernel scores are all-or-nothing per test (the tests exit nonzero on any
-failing shape), and we grade with a fresh compile of your submitted
-`flash_attention_kernel.cu` against unmodified course code — do not modify
-files outside `src/flash_attention_kernel.cu`.
+failing shape), and we grade with a fresh compile of your two submitted
+files against unmodified course code — do not modify files outside
+`src/flash_attention_kernel.cu` and `triton_flash_attention.py`.
 
 ### FAQ / Common issues
 
-* **`cannot open shared object file` when running a test** — you skipped
-  the compile cell (or the runtime restarted). Run `bash compile_cuda.sh`.
+* **`cannot open shared object file` when running a graded test** — you
+  skipped the compile cell (or the runtime restarted). Run
+  `bash compile_cuda.sh`.
+* **I edited the kernel but the integration test result did not change** —
+  the extension recompiles automatically on source changes, but the
+  `ctypes` tests load `build/*.so`: rerun `bash compile_cuda.sh`. If in
+  doubt, recompile both.
+* **The first extension build takes minutes / prints a wall of compiler
+  output** — normal; it is cached afterwards.
 * **Everything fails after one bad run** — an illegal memory access poisons
   the CUDA context. `Runtime > Restart session`, recompile, rerun.
-* **`requested shared memory exceeds device limit`** — your `head_dim` is
-  too large; the graded shapes keep `d <= 64`, so this indicates a broken
-  index computation writing out of bounds rather than a real limit problem.
+* **`head_dim too large for shared memory`** — the graded shapes keep
+  `d <= 64`, so this usually indicates a broken index computation writing
+  out of bounds rather than a real limit problem.
 * **Causal test wrong only in the last rows/columns** — off-by-one in the
   global-position translation; remember the diagonal is *kept*.
-* **My kernel is slower than naive attention** — expected in this harness;
-  see the note in Part 3.
+* **My CUDA kernel is slower than naive attention** — expected; that is
+  the point of Part 4 and Q3.
+* **My Triton kernel returns NaN** — with the merge block empty (or
+  wrong), `l_i` stays 0 and the final division is 0/0. If your merge looks
+  right, check that `alpha` multiplies *both* `l_i` and `acc`.
+* **`tl.dot` complains about dtypes** — cast the probabilities to the
+  value dtype before the matmul: `tl.dot(p.to(v.dtype), v)`.
 
 ### Acknowledgments
 
 This assignment builds on
 [Assignment 4 of 11-868 *Large Language Model Systems*](https://llmsystem.github.io/llmsystemhomework/assignment_4/)
-at Carnegie Mellon University — the miniTorch-based framework, the CUDA
-kernel/`ctypes` integration workflow, and the machine translation project
-are adapted from that course's assignment series. We thank the 11-868
-instructors for making their course materials publicly available.
-miniTorch itself is by Sasha Rush and collaborators
-([minitorch.github.io](https://minitorch.github.io)).
+at Carnegie Mellon University — the custom-CUDA-kernel workflow and the
+machine translation project are adapted from that course's assignment
+series. We thank the 11-868 instructors for making their course materials
+publicly available.
