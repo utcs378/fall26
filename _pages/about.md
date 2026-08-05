@@ -23,10 +23,6 @@ In this course, you will:
 Classes combine lectures, systems-oriented discussion, and programming projects.
 Whether you are interested in generative AI infrastructure, large-scale systems, or building efficient AI applications, this course will give you tools for understanding how model behavior and systems behavior interact.
 
-### Textbooks
-
-TODO
-
 ### Topics Covered
 
 Throughout the semester, we will cover the following key topics:
@@ -42,9 +38,10 @@ Throughout the semester, we will cover the following key topics:
 * Agent and workflow systems, including tool use, state, reliability, and observability
 * Runtime protocols, control planes, operating AI systems, evaluation, adaptive systems, and future directions
 
-### Prerequisites
+### Preferred Prerequisites
 
-TODO
+* CS 439 (Principles of Computer Systems) or equivalent
+* CS 343 (Artificial Intelligence), or equivalent machine learning/AI background
 
 ***
 
@@ -52,12 +49,12 @@ TODO
 
 - **Course Number:** CS 378
 - **Semester:** Fall 2026
-- **Unique Number:** TODO
-- **Time:** TODO
-- **Location:** TODO
+- **Unique Number:** 55595
+- **Time:** Tuesday & Thursday, 11:00 a.m. - 12:30 p.m.
+- **Location:** GDC 5.302
 - **Discussion:** TODO
-- **Lecture Recordings:** TODO
-- **Course Materials:** TODO
+<!-- - **Lecture Recordings:** TODO -->
+- **Course Materials:** Canvas
 
 ***
 
