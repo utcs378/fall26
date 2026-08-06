@@ -11,11 +11,7 @@ title: Logistics
 
 ### Communication
 
-Course announcements, assignment clarifications, and course-related discussion will use the course communication platform once it is finalized.
-
-- **Discussion platform:** TODO
-- **Canvas:** TODO
-- **Email:** For private or individual matters, contact the instructor or TAs directly.
+We will use [Ed](https://edstem.org/us/courses/100987) for course announcements, general questions, assignment clarifications, student discussions, and course-related communication.
 
 ***
 

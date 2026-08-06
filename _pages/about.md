@@ -52,9 +52,9 @@ Throughout the semester, we will cover the following key topics:
 - **Unique Number:** 55595
 - **Time:** Tuesday & Thursday, 11:00 a.m. - 12:30 p.m.
 - **Location:** GDC 5.302
-- **Discussion:** TODO
+- **Discussion:** [Ed](https://edstem.org/us/courses/100987){:target="\_blank"}
 <!-- - **Lecture Recordings:** TODO -->
-- **Course Materials:** Canvas
+- **Course Materials:** [Canvas](https://utexas.instructure.com/courses/1451468){:target="\_blank"}
 
 ***
 
