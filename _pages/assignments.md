@@ -22,7 +22,17 @@ TODO
 
 <tr>
     <th scope="row">{{ assignment.number }}</th>
-    <th scope="row">{{ assignment.title }}</th>
+    <th scope="row">
+        {% if assignment.link %}
+        {% if assignment.link contains '://' %}
+        <a href="{{ assignment.link }}" target="_blank">{{ assignment.title }}</a>
+        {% else %}
+        <a href="{{ assignment.link | relative_url }}">{{ assignment.title }}</a>
+        {% endif %}
+        {% else %}
+        {{ assignment.title }}
+        {% endif %}
+    </th>
     <th scope="row">{{ assignment.release_date }}</th>
     <th scope="row">{{ assignment.due_date }}</th>
 </tr>

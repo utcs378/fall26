@@ -21,7 +21,7 @@ All of your work happens in the provided notebook, `Assignment0_PyTorch_Profilin
 
 #### Setup
 This assignment is designed to run on **Google Colab**, which gives you free access to a GPU.
-1. Open `Assignment0_PyTorch_Profiling.ipynb` in Colab (**File → Open notebook**, or upload the `.ipynb`).
+1. Open the [Assignment 0 notebook](https://colab.research.google.com/drive/1UceXiCg9ypi4NbxjKV1TbZo5qZy_OL30?usp=sharing){:target="\_blank"} in Colab and make your own copy.
 2. Go to **Runtime → Change runtime type**, set **Hardware accelerator** to **GPU** (a free **T4** is plenty), and click **Save**.
 3. Click **Connect** in the top-right corner.
 4. Run the **Setup** cell. It should print `Using device: cuda`. If it prints `cpu`, revisit the steps above.

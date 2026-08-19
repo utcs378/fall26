@@ -36,7 +36,11 @@ These policies ensure that all students have equal opportunity to receive suppor
 
 ### Grading
 
-TODO
+Your final grade will be based on the following components:
+
+* **Quizzes (50%)**: Short quizzes will be used to check understanding of course material.
+* **Programming Assignments (40%)**: Hands-on assignments will reinforce key systems concepts.
+* **Attendance (10%)**: Attendance will be checked in class through short quizzes.
 
 ***
 
@@ -90,7 +94,8 @@ Violations of academic integrity will be handled according to the [University of
 
 #### Attendance and Participation
 
-Regular class attendance is expected and contributes to your learning.
+Regular class attendance is expected and contributes to your learning and final grade.
+We will administer small quizzes through a Google Form for attendance checks; only completion, not correctness, will count toward your grade.
 If you must miss class for planned reasons, notify the instructor in advance.
 For emergency absences, contact the instructor as soon as possible.
 

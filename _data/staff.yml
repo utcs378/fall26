@@ -2,17 +2,17 @@ Instructors:
     - name: Aditya Akella
       email: akella@cs.utexas.edu
       url: https://www.cs.utexas.edu/~akella/
-      office-hours: TODO
+      office-hours: Tuesday & Thursday, 12.30 PM - 1 PM
       image:
-      location: TODO
+      location: GDC Room 6.826 
 
 CoInstructors:
     - name: Yeonju Ro
       email: yro@utexas.edu
       url:
-      office-hours: TODO
+      office-hours: Friday, 4 PM - 6 PM
       image:
-      location: TODO
+      location: GDC 6th floor Atrium
 
 EducationAssociates:
 
@@ -27,8 +27,8 @@ TAs:
     - name: Rishika Varma Kalidindi
       email: rishikavarma@utexas.edu
       url:
-      office-hours: TODO
-      location: TODO
+      office-hours: Wednesday 4 PM - 5 PM
+      location: Basement of GDC, room 1.302 Desk 4
       image:
 
 CAs:
