@@ -1,30 +1,30 @@
-- release_date:
-  due_date:
+- release_date: 08/25/2026
+  due_date: 08/30/2026
   number: 0
   title: >
     PyTorch and CUDA Basics
   link: /assignments/assignment0
 
-- release_date:
-  due_date:
+- release_date: 09/08/2026
+  due_date: 09/21/2026
   number: 1
   title: >
     Kernels and Compilation
 
-- release_date:
-  due_date:
+- release_date: 09/22/2026
+  due_date: 10/05/2026
   number: 2
   title: >
     Basic Profiling and Parallelism
 
-- release_date:
-  due_date:
+- release_date: 10/13/2026
+  due_date: 10/26/2026
   number: 3
   title: >
     Serving Stack
 
-- release_date:
-  due_date:
+- release_date: 11/03/2026
+  due_date: 11/16/2026
   number: 4
   title: >
     Deep Research Agent and Block Management

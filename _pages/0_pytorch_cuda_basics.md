@@ -3,7 +3,7 @@ layout: page
 permalink: /assignments/assignment0
 title: "Assignment 0: PyTorch & Profiling"
 ---
-#### **Released:** TODO <br/> **Due:** TODO
+#### **Released:** 08/25/2026 <br/> **Due:** 08/30/2026
 {: .no_toc}
 
 * (The list will be replaced with the table of contents.)
