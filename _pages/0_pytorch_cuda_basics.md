@@ -17,7 +17,12 @@ The assignment has two parts:
 1. **PyTorch Fundamentals.** You will train a small MLP that classifies handwritten digits (MNIST). Instead of calling PyTorch's built-in layers, you will implement the core operators by hand, including both their **forward** and **backward** (gradient) passes. You will then assemble them into an MLP, write the training loop, and tune it to reach high accuracy.
 2. **The PyTorch Profiler.** You will profile your training loop with `torch.profiler` to see the underlying CPU and GPU activity, read the resulting traces and memory timelines, and reason about the results from a systems perspective.
 
-All of your work happens in the provided notebook, <a href="{{ '/assets/assignments/Assignment0_PyTorch_Profiling.ipynb' | relative_url }}" download>`Assignment0_PyTorch_Profiling.ipynb`</a> (click to download).
+Make sure you complete the code blocks between `# TODO: ...` and `# END OF YOUR CODE` before handing in the assignment.
+
+In addition to the notebook, you need to submit a separate report answering all the questions 
+.
+
+You can find the notebook with detailed instructions here: <a href="{{ '/assets/assignments/Assignment0_PyTorch_Profiling.ipynb' | relative_url }}" download>**Assignment0_PyTorch_Profiling.ipynb**</a> (click to download).
 
 #### Setup
 This assignment is designed to run on **Google Colab**, which gives you free access to a GPU.
