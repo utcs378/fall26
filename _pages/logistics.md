@@ -48,7 +48,7 @@ Assignment specifications, release dates, due dates, and links will be added on 
 #### Group Work
 
 Programming assignments are expected to be completed in groups.
-Group size is three.
+Group size is two.
 
 #### Deadlines and Late Submissions
 

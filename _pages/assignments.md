@@ -5,7 +5,7 @@ title: Programming Assignments
 ---
 
 The course will be quite hands on.
-We will have five programming assignments which are to be completed in groups of three. Each project will be due 2-3 weeks after it is assigned.
+We will have five programming assignments which are to be completed in groups of two. Each project will be due 2-3 weeks after it is assigned.
 
 Prior experience has shown that students who begin projects shortly after they are assigned are more likely to succeed. Projects submitted after the day and time they are due will be penalized 10% of the total points of the assignment per day, unless you have made prior arrangements with me due to extenuating circumstances.
 
