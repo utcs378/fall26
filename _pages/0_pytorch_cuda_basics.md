@@ -98,10 +98,12 @@ for bs in [32, 128, 512, 2048]:
 ### Submission
 You must submit:
 * Your completed notebook `Assignment0_PyTorch_Profiling.ipynb`, with **all cells executed** and outputs visible (check cells passing, training logs, loss curves, etc.).
-* A report with your answers and explainations to all questions in text and screenshots.
+* A report with 1) a detailed account of your approach, 2) your answers and explainations to all questions in text and screenshots.
 
 **Naming Format**:
-* Please name the notebook file as `assignment0_{Your EID}.ipynb` and the PDF report as `assignment0_report_{Your EID}.pdf` when submitting.
+* Please name the notebook file as `assignment0.ipynb` and the PDF report as `assignment0_report.pdf`. Create a zip folder with both of these named `assignment0_{Group Name}.zip` when submitting.
+
+Submission is to be done through [Canvas](https://utexas.instructure.com/courses/1451468){:target="_blank"}. Only one person per group is required to submit.
 
 ### Grading
 In this assignment we will only grade the report.
