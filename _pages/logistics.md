@@ -65,22 +65,29 @@ Each assignment will be due approximately 2-3 weeks after it is released.
 This policy ensures fairness and allows the instructor to make appropriate arrangements in advance.
 If you anticipate any conflicts with assignment deadlines, reach out proactively.
 
-#### Academic Integrity
-
-All code and results you submit must be your original work.
-Cheating and plagiarism will not be tolerated and will be handled according to the [University of Texas policies and procedures](https://deanofstudents.utexas.edu/conduct/index.php).
-
 ***
 
 ### Course Policies
 
 #### Academic Integrity
 
-All submitted course materials must be your original work.
+In accordance with the University's [Institutional Rules on Student Services and Activities, Chapter 11](https://catalog.utexas.edu/general-information/appendices/appendix-c/student-conduct-and-academic-integrity/), students accept the responsibility to always uphold academic integrity and an honor code reflective of a scholarly community devoted to academic and personal success.
+
+All submitted course materials must be your team's original work, or compliant with the [AI Usage](#ai-usage) policy.
 When using external sources, provide proper citations and clearly indicate which parts are your own work.
 If you have any doubts about whether something violates this policy, consult the instructor before submission.
 
 Violations of academic integrity will be handled according to the [University of Texas policies and procedures](https://deanofstudents.utexas.edu/conduct/index.php).
+
+#### AI Usage
+
+All members of the University community are fully accountable and responsible for any output they produce as part of academic work.
+Students must follow the [Texas Statement on Academic Integrity](https://www.utexas.edu/academics/texas-statement-academic-integrity) and avoid prohibited uses described in the University's [Acceptable Use of Generative AI Tools](https://security.utexas.edu/ai-tools) guidance.
+
+* **Assignments:** You are **free** to use AI/coding agents to brainstorm and understand how to solve problems in your assignments, but the final code you submit must be largely yours, and you must understand it completely. Over-reliance on automation risks leaving your understanding incomplete. Submissions produced largely or entirely by AI may constitute **academic misconduct** under University rules.
+  * Course staff will also be conducting **team interviews** for each assignment and grading members independently on the depth of their understanding of their submission.
+  * Whenever you use AI/coding agents during your assignments, include a brief **AI Use Disclosure** with the submission that identifies the tool and explains what it was used for (formatting, core methodology, etc.), states how much of the submitted code is original, and describes how you reviewed its output. Failing to disclose the use of AI may also constitute **academic misconduct** under University rules.
+* **Attendance checks and quizzes:** Attendance checks and quizzes are closed book and AI use is **strictly prohibited**. Unlike the assignments, these are designed to determine your unassisted understanding of the material.
 
 #### Attendance and Participation
 
