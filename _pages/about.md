@@ -55,9 +55,9 @@ Throughout the semester, we will cover the following key topics:
 - **Discussion:** [Ed](https://edstem.org/us/courses/100987){:target="\_blank"}
 <!-- - **Lecture Recordings:** TODO -->
 - **Course Materials:** [Canvas](https://utexas.instructure.com/courses/1451468){:target="\_blank"}
+- **Course Staff Email:** [378-sysml-f26@utlists.utexas.edu](mailto:378-sysml-f26@utlists.utexas.edu)
 
 ***
 
 ### Course Staff
 
-Office hours and locations are TODO.

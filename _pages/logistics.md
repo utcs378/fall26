@@ -17,17 +17,13 @@ We will use [Ed](https://edstem.org/us/courses/100987) for course announcements,
 
 ### Office Hours
 
-The instructor and TAs will hold regular office hours to help with course material, programming assignments, and systems concepts.
-
-- **Instructor office hours:** TODO
-- **TA office hours:** TODO
-- **Locations:** TODO
-
-To keep office hours productive and fair for everyone, please follow these guidelines:
+The instructor and TAs will hold regular office hours to help with course material, programming assignments, and systems concepts. To keep office hours productive and fair for everyone, please follow these guidelines:
 
 * **Come Prepared**: Make a genuine effort to solve problems on your own before attending office hours. For project-related questions, thoroughly read the assignment description and attempt an implementation first. Note that instructors will guide you toward solutions but will not write code for you.
 
 * **Respect the Queue**: Office hours operate on a queue system with a 10-minute limit per student. You are welcome to rejoin the queue if you need additional help.
+
+If you need to meet outside of scheduled office hours, email [378-sysml-f26@utlists.utexas.edu](mailto:378-sysml-f26@utlists.utexas.edu) to request an appointment.
 
 These policies ensure that all students have equal opportunity to receive support.
 
@@ -73,12 +69,6 @@ If you anticipate any conflicts with assignment deadlines, reach out proactively
 
 All code and results you submit must be your original work.
 Cheating and plagiarism will not be tolerated and will be handled according to the [University of Texas policies and procedures](https://deanofstudents.utexas.edu/conduct/index.php).
-
-***  
-
-### Exams
-
-TODO
 
 ***
 

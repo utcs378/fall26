@@ -13,7 +13,6 @@ All code and results you submit must be your original work. Cheating and plagiar
 
 <!-- Assignment specifications, release dates, due dates, and links will be added when they are available. -->
 
-TODO
 
 
 {% for item in site.data.assignments %}
