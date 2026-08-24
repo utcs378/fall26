@@ -7,9 +7,9 @@ title: Programming Assignments
 The course will be quite hands on.
 We will have five programming assignments which are to be completed in groups of two. Please register your groups in this [google form](https://forms.gle/HTuDDKHuKyp1sytB6){:target="_blank"} by Saturday(8/29). Only one of you needs to do so. You will be assigned a group number which is to be used in the submission format.
 
-Each project will be due 2-3 weeks after it is assigned.
+Each assignment will be due 2-3 weeks after it is assigned.
 
-Prior experience has shown that students who begin projects shortly after they are assigned are more likely to succeed. Projects submitted after the day and time they are due will be penalized 10% of the total points of the assignment per day, unless you have made prior arrangements with me due to extenuating circumstances.
+Prior experience has shown that students who begin assignments shortly after they are assigned are more likely to succeed. Assignments submitted after the day and time they are due will be penalized 10% of the total points of the assignment per day, unless you have made prior arrangements with me due to extenuating circumstances.
 
 All code and results you submit must be your original work. Cheating and plagiarism will not be tolerated and will be dealt with in accordance with the [University of Texas policies and procedures](https://deanofstudents.utexas.edu/conduct/index.php).
 
