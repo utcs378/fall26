@@ -36,7 +36,7 @@ Your final grade will be based on the following components:
 
 * **Quizzes (50%)**: Short quizzes will be used to check understanding of course material.
 * **Programming Assignments (40%)**: Hands-on assignments will reinforce key systems concepts.
-* **Attendance (10%)**: Attendance will be checked in class through short quizzes.
+* **Attendance (10%)**: Attendance will be checked in class through lightning questions.
 
 ***
 
