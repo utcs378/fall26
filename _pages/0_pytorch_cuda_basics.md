@@ -104,6 +104,7 @@ You must submit:
 * Please name the notebook file as `assignment0.ipynb` and the PDF report as `assignment0_report.pdf`. Create a zip folder with both of these named `assignment0_{Group Name}.zip` when submitting.
 
 Submission is to be done through [Canvas](https://utexas.instructure.com/courses/1451468){:target="_blank"}. Only one person per group is required to submit.
+Please check your group numbers [here](https://docs.google.com/spreadsheets/d/1gqZPBOdgAd2ViVLmAQw8IVMt3Q2tH4bmN8zG5BI9s7k/edit?usp=sharing){:target="_blank"}.
 
 ### Grading
 In this assignment we will only grade the report.
