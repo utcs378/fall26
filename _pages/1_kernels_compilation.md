@@ -4,7 +4,7 @@ permalink: /assignments/assignment1
 title: "Assignment 1: Kernels and Compilation"
 ---
 
-#### **Released:** 09/10/2026 <br/> **Due:** 09/21/2026, 11:59 PM CT
+#### **Released:** 09/10/2026 <br/> **Due:** 09/23/2026, 11:59 PM CT
 {: .no_toc}
 
 * (The list will be replaced with the table of contents.)
