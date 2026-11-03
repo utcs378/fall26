@@ -274,7 +274,6 @@
     - Model calls, tool invocation, remote execution, session state, workflow state, and orchestration graphs
     - Latency accumulation across multi-step workflows
   logistics:
-    - Assignment 4 planned
 
 - date: " "
   lecturer:
@@ -286,6 +285,7 @@
   readings:
     - Retries, timeouts, fallback behavior, partial failure, idempotence, tracing, and observability
   logistics:
+    - Assignment 4 planned
 
 - title: "Week 12: Protocols and control planes for AI runtimes"
 
