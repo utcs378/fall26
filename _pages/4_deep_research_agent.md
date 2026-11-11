@@ -25,7 +25,7 @@ In this assignment, you will study these system tradeoffs first-hand and then ex
 
 Parts 2 and 3 run on a CPU simulator built on [Vidur](https://github.com/microsoft/vidur/tree/25e0082dbbfb206fb0477c3ebbededa7ead78949) that models Llama-3-8B on one or two A100 GPUs, each with its own request queue and KV cache. The figure below shows how calls move from the application into the inference engine, with blue labels marking the hooks your policy can implement:
 
-![Policy decisions in the application and inference engine.]({{ '/assets/img/assignments/assignment4/system.svg' | relative_url }})
+![Policy decisions in the application and inference engine.]({{ '/assets/img/assignments/assignment4/system.svg' | relative_url }}){: style="max-width: 100%; height: auto;"}
 
 - **Concurrency and dispatch:** A **job** (such as generating a research report) consists of dependent LLM and tool calls. Once a call's dependencies finish, it enters **ready calls**. Your policy controls how many calls can be in flight (`target_concurrency`), which ready call is dispatched next (`dispatch_order`), and which GPU replica receives it (`route_call`).
 - **Replica scheduling and KV-cache management:** Each replica maintains its own waiting queue, mixed prefill/decode batch, and KV cache. Your policy controls admission order (`admission_order`), batch token budget (`batch_token_budget`), preemption under memory pressure (`choose_preempted`), and cached block eviction (`choose_victim`), while observing system events through `on_event`.
@@ -90,7 +90,7 @@ In this part, you will run a LangGraph-based deep research agent on 16 questions
 
 #### The agent
 
-![The deep research graph: plan, parallel research branches, coverage check, optional follow-up, synthesize, validate, optional repair.]({{ '/assets/img/assignments/assignment4/research_workflow.svg' | relative_url }})
+![The deep research graph: plan, parallel research branches, coverage check, optional follow-up, synthesize, validate, optional repair.]({{ '/assets/img/assignments/assignment4/research_workflow.svg' | relative_url }}){: style="max-width: 100%; height: auto;"}
 
 For each question, the agent gathers evidence from a local corpus and synthesizes a cited report in five stages:
 
@@ -247,7 +247,7 @@ An inference engine can retain a finished call's KV-cache blocks in GPU memory s
 
 Each evaluation trace represents a workload of 16 jobs across one of eight agentic workload families:
 
-![The eight workload families.]({{ '/assets/img/assignments/assignment4/families.svg' | relative_url }})
+![The eight workload families.]({{ '/assets/img/assignments/assignment4/families.svg' | relative_url }}){: style="max-width: 100%; height: auto;"}
 
 - **Jobs and traces:** Each job is a DAG of LLM calls and tool delays with fixed prompts, output lengths, and arrival times. The simulator replays traces on Llama-3-8B across one or two A100 GPUs (*replicas*), using Vidur's vLLM V1 scheduler (which mixes prefill and decode tokens in each batch) and timing predictions derived from A100 profiling data. Each replica maintains its own request queue and KV cache.
 - **Latency and speedup:** A job's **latency** is the elapsed time from its arrival until its final LLM call or tool step completes. On a given trace, a policy's **speedup** is the reference policy's mean job latency divided by the policy's mean job latency; `score()` aggregates these speedups across all eight workload families (see [Scoring](#scoring)).
@@ -260,7 +260,7 @@ Following vLLM's prefix caching design, KV memory on each replica is partitioned
 - **cached:** unreferenced (`ref_cnt == 0`), but its contents remain in memory in case a future prompt shares the same prefix;
 - **empty:** holds no reusable data.
 
-![Three prompts cut into 16-token blocks, and the tree of shared prefixes those blocks form in memory.]({{ '/assets/img/assignments/assignment4/kv_prefix.svg' | relative_url }})
+![Three prompts cut into 16-token blocks, and the tree of shared prefixes those blocks form in memory.]({{ '/assets/img/assignments/assignment4/kv_prefix.svg' | relative_url }}){: style="max-width: 100%; height: auto;"}
 
 When a running call needs a new block, the engine uses an empty slot if one is available; otherwise, it calls your policy's `choose_victim` hook to select a cached block to overwrite. Each trace's KV capacity is sized to its active working set so that eviction choices directly affect performance. Crucially, **a resident block can be reused only if every preceding block in the prompt is also resident (active or cached) on that replica.**
 
@@ -319,7 +319,7 @@ pytest tests/test_part2_lru.py tests/test_reference_results.py
 
 #### 2.2 Prefix-aware eviction
 
-![Evicting a root prevents reuse of its descendants; evicting a tail preserves the remaining prefix.]({{ '/assets/img/assignments/assignment4/evict_tail.svg' | relative_url }})
+![Evicting a root prevents reuse of its descendants; evicting a tail preserves the remaining prefix.]({{ '/assets/img/assignments/assignment4/evict_tail.svg' | relative_url }}){: style="max-width: 100%; height: auto;"}
 
 When a call runs, it accesses its prompt blocks sequentially from root to tail. Under plain LRU, the root block of a shared prefix appears *least* recently used—and evicting that root immediately makes every descendant block after it unusable.
 
@@ -391,7 +391,7 @@ Section 7 of `notebooks/part2_lru_policy.ipynb` explores `dispatch_order` (prior
 
 In this final part, you will build an automated research system in which LLM agents iteratively propose, implement, and evaluate serving policies for the two-replica simulator. Your system will select your final `policy.py` submission, and you will analyze what the agents discovered beyond your hand-written seed policies.
 
-![One possible research system and the evaluation splits.]({{ '/assets/img/assignments/assignment4/research_system.svg' | relative_url }})
+![One possible research system and the evaluation splits.]({{ '/assets/img/assignments/assignment4/research_system.svg' | relative_url }}){: style="max-width: 100%; height: auto;"}
 
 #### What to build
 
