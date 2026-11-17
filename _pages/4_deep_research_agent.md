@@ -524,7 +524,7 @@ Answer **Q1–Q6** in `assignment4_report.pdf`, placing each answer directly und
 
 Submit to [Assignment 4 Leaderboard](https://www.gradescope.com/courses/1421647/assignments/8962063/) on Gradescope. Upload your final solution as `policy.py`.
 
-The leaderboard shows your overall and per-family speedups on 16 hidden traces next to staff benchmark policies, and your feedback shows projected performance credit.
+The leaderboard shows your overall and per-family speedups on 16 hidden traces next to the staff benchmark policies.
 
 #### Canvas: code, runs, and report
 
@@ -537,7 +537,7 @@ runs/c2/, runs/c8/, runs/c8-faults/
 research/                              your research system
 candidates/                            your seed policies
 runs/<campaign>/                       each campaign's candidates (including failures), logs, and intervention log
-policy.py, params.json (if used)       the files you submitted to Gradescope
+policy.py                              the file you submitted to Gradescope
 assignment4_report.pdf
 ```
 
@@ -576,11 +576,15 @@ Total: 100% (+10% extra credit)
 
 **Extra credit: up to +10%**
 
-- Hidden-test speedup in the top 3% of teams: +5%
+- Top 3 teams by **hidden-test** speedup, although we expect this to be close to public leaderboard performance: +5%
 - An exceptional research system or report, at staff discretion: +5%
 
-Correctness items are graded by staff tests of the same contracts as the public tests, on new inputs.
+Correctness items are graded by hidden staff tests that check the same behavior as the public tests on different inputs.
 
 ### Acknowledgments
 
-The simulator adapts Vidur's vLLM V1 scheduler and cache manager. The Part 1 agent is adapted from LangChain's *Deep Research from Scratch* (MIT). The workload traces are built from public datasets; `data/README.md` in the repository lists their sources and licenses.
+We acknowledge the following resources:
+
+- [Vidur](https://github.com/microsoft/vidur)
+- LangChain's [Deep Research from Scratch](https://github.com/langchain-ai/deep_research_from_scratch) (MIT)
+- The public datasets used to build the workload traces; please see [data/README.md](https://github.com/utcs378/assignment4-template/blob/main/data/README.md) for details
